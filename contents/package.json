@@ -17,5 +17,5 @@
   "bugs": {
     "url": "https://github.com/{{ $github_username }}/{{ $module_name }}/issues"
   },
-  "homepage": "https://github.com/{{ $github_username }}/{{ $module_name }}"
+  "homepage": "{{ $homepage }}"
 }
