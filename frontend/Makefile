@@ -1,4 +1,4 @@
-MODULE			:= {{ module_name }}
+MODULE			:= {{ $module_name }}
 EXPORT 			:= $(MODULE)
 BUILD_DIR 		:= build
 BUNDLE 			:= $(BUILD_DIR)/$(MODULE).js
