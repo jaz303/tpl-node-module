@@ -21,11 +21,11 @@ template inplace:"README.md"
 template inplace:"package.json"
 shell "npm install --save tape"
 
-if $create_git_repo
+if $create_git_repo then
 	copy optional/gitignore, .gitignore
 	create_git_repo commit: 1
 end
 
-if $need_cli
+if $need_cli then
   copy optional/cli.js, cli.js
 end
