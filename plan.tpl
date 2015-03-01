@@ -12,6 +12,7 @@ prompt author_email, default: $.email
 prompt author_twitter, default: $.twitter_username
 prompt author_homepage, default: $.homepage
 
+yesno frontend_module, default: 0
 yesno create_git_repo, default: 1
 
 actions:
@@ -19,13 +20,22 @@ actions:
 tree contents
 template inplace:"README.md"
 template inplace:"package.json"
-shell "npm install --save tape"
+
+shell "npm install --save-dev tape"
 
 if $create_git_repo then
 	copy optional/gitignore, .gitignore
-	create_git_repo commit: 1
 end
 
-if $need_cli then
-  copy optional/cli.js, cli.js
+if $frontend_module then
+	tree frontend
+	shell "npm install --save-dev uglify-js"
+	shell "npm install --save-dev spinup"
+	if $create_git_repo then
+		append_line .gitignore, "build"
+	end
+end
+
+if $create_git_repo then
+	create_git_repo commit: 1
 end
