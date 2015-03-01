@@ -1,0 +1,21 @@
+{
+  "name": "{{ $module_name }}",
+  "version": "0.0.0",
+  "description": "{{ $description }}",
+  "keywords": [],
+  "scripts": {
+    "test": "set -e; for t in test/*; do node $t; done"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/{{ $github_username }}/{{ $module_name }}.git"
+  },
+  "author": "{{ $author_name }} <{{ $author_email }}> ({{ $author_homepage }})",
+  "license": "{{ $license }}",
+  "bugs": {
+    "url": "https://github.com/{{ $github_username }}/{{ $module_name }}/issues"
+  },
+  "homepage": "https://github.com/{{ $github_username }}/{{ $module_name }}"
+}
