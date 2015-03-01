@@ -1,7 +1,8 @@
 inputs:
 
-prompt module_name, prompt: "Module name", default: $TARGET_NAME
-# , filter: | slugify()
+prompt module_name, prompt: "Module name",
+                    default: $TARGET_NAME
+                    # , filter: | slugify()
 
 prompt description
 prompt github_username, default: $.github_username
@@ -18,24 +19,26 @@ yesno create_git_repo, default: 1
 actions:
 
 tree contents
-template inplace:"README.md"
-template inplace:"package.json"
+template inplace: README.md
+template inplace: package.json
 
 shell "npm install --save-dev tape"
 
 if $create_git_repo then
-	copy optional/gitignore, .gitignore
+    copy optional/gitignore, .gitignore
 end
 
 if $frontend_module then
-	tree frontend
-	shell "npm install --save-dev uglify-js"
-	shell "npm install --save-dev spinup"
-	if $create_git_repo then
-		append_line .gitignore, "build"
-	end
+    tree frontend
+    template inplace: Makefile
+    shell "npm install --save-dev uglify-js"
+    shell "npm install --save-dev spinup"
+    if $create_git_repo then
+        append_line .gitignore, "build"
+        append_line .gitignore, "demo/bundle.js"
+    end
 end
 
 if $create_git_repo then
-	create_git_repo commit: 1
+    create_git_repo commit: 1
 end
